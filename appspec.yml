@@ -1,0 +1,31 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /home/ubuntu/app
+    overwrite: true
+permissions:
+  - object: /home/ubuntu/app
+    owner: ubuntu
+    group: ubuntu
+    mode: 755
+    type:
+      - directory
+      - file
+hooks:
+  BeforeInstall:
+    - location: scripts/stop_server.sh
+      timeout: 300
+      runas: ubuntu
+  AfterInstall:
+    - location: scripts/install_deps.sh
+      timeout: 300
+      runas: ubuntu
+  ApplicationStart:
+    - location: scripts/start_server.sh
+      timeout: 300
+      runas: ubuntu
+  ValidateService:
+    - location: scripts/validate_service.sh
+      timeout: 300
+      runas: ubuntu

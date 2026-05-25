@@ -1,5 +1,0 @@
-RewriteEngine On
-RewriteRule ^uploads/ - [L]
-RewriteRule ^(.*)$ http://127.0.0.1:7000/$1 [P,L]
-RewriteRule ^$ http://127.0.0.1:7000/ [P,L]
-RewriteEngine On
